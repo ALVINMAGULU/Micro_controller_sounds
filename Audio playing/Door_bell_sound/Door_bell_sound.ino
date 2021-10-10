@@ -1,13 +1,9 @@
 // Playing a digital WAV recording repeatadly using the XTronical DAC Audio library
-// prints out to the serial monitor numbers counting up showing that the sound plays 
-// independently of the main loop
-// See www.xtronical.com for write ups on sound, the hardware required and how to make
-// the wav files and include them in your code
 
 #include "SoundData.h"
 #include "XT_DAC_Audio.h"
 
-XT_Wav_Class ForceWithYou(Force);     // create an object of type XT_Wav_Class that is used by 
+XT_Wav_Class DoorBell(doorBell);     // create an object of type XT_Wav_Class that is used by 
                                       // the dac audio class (below), passing wav data as parameter.
                                       
 XT_DAC_Audio_Class DacAudio(25,0);    // Create the main player class object. 
@@ -25,7 +21,7 @@ void setup() {
 
 void loop() {
   DacAudio.FillBuffer();                // Fill the sound buffer with data
-  if(ForceWithYou.Playing==false)       // if not playing,
+  if(DoorBell.Playing==false)       // if not playing,
     DacAudio.Play(&ForceWithYou);       // play it, this will cause it to repeat and repeat...
   Serial.println(DemoCounter++);        // Showing that the sound will play as well as your code running here.
 }
